@@ -1,35 +1,35 @@
 const sqlite3 = require('sqlite3').verbose();
+const path = require('path');
+const dbPath = path.resolve(__dirname, '../config/sqlite/products.db');
 
-// open database in memory
-let db = new sqlite3.Database(
-  '../../../sqlite/products.db',
-  sqlite3.OPEN_READWRITE,
-  (err) => {
-    if (err) {
-      return console.error(err.message);
-    }
-    console.log('Connected to the in-memory SQlite database.');
-  }
-);
+const connectDB = async () => {
+  try {
+    // open database in memory
+    // let db = new sqlite3.Database('../../../sqlite/products.db');
+    let db = new sqlite3.Database(dbPath);
 
-db.serialize(() => {
-  db.each(
-    `SELECT prod_id as id,
-                  name as name
-           FROM tbl1`,
-    (err, row) => {
+    let sql = `SELECT Name name from tbl1 ORDER BY name`;
+
+    db.all(sql, [], (err, rows) => {
       if (err) {
-        console.error(err.message);
+        throw err;
       }
-      console.log(row.id + '\t' + row.name);
-    }
-  );
-});
+      rows.forEach((row) => {
+        console.log(row.name);
+      });
+    });
 
-// close the database connection
-db.close((err) => {
-  if (err) {
-    return console.error(err.message);
+    // close the database connection
+    db.close((err) => {
+      if (err) {
+        return console.error(err.message);
+      }
+      console.log('Close the database connection.');
+    });
+  } catch (error) {
+    console.error(`Error: ${error.message}`.trimEnd.underline.bold);
+    process.exit(1);
   }
-  console.log('Close the database connection.');
-});
+};
+
+module.exports = connectDB;

@@ -1,8 +1,11 @@
 const express = require('express');
 const colors = require('colors');
 const dotenv = require('dotenv');
+const connectSqlite = require('./config/connect');
 
 dotenv.config();
+
+connectSqlite();
 
 const app = express();
 app.use(express.json());
