@@ -3,12 +3,16 @@ const colors = require('colors');
 const dotenv = require('dotenv');
 const connectSqlite = require('./config/connect');
 
+const productRoutes = require('./routes/productRoutes.js');
+
 dotenv.config();
 
 connectSqlite();
 
 const app = express();
 app.use(express.json());
+
+app.use('/api/products', productRoutes);
 
 if (process.env.NODE_ENV !== 'production') {
   app.get('/', (req, res) => {
