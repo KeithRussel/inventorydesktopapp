@@ -10,6 +10,8 @@
 
 # production
 /build
+/dist
+/dist/win-unpacked
 
 # misc
 .DS_Store

@@ -1,5 +1,6 @@
 import './App.css';
+import Drawer from './components/Drawer';
 
-const App = () => <div>hello world</div>;
+const App = () => <Drawer />;
 
 export default App;
