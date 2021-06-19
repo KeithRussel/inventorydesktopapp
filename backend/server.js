@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const colors = require('colors');
 const dotenv = require('dotenv');
 const connectSqlite = require('./config/connect');
@@ -10,7 +11,7 @@ dotenv.config();
 // connectSqlite();
 
 const app = express();
-app.use(express.json());
+app.use(express.json(), cors());
 
 app.use('/api/products', productRoutes);
 

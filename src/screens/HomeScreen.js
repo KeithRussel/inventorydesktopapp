@@ -1,11 +1,9 @@
-// import Drawer from '../components/Drawer';
-import useSWR from 'swr';
 import server from '../utils/server';
 import useRequest from '../utils/useRequest';
 
 const HomeScreen = () => {
   const { data: result, error } = useRequest({
-    url: `http://localhost:5000/api/products`,
+    url: `${server}/api/products`,
   });
   // const { data: result, error } = useSWR(`${server}/api/products`);
 
@@ -18,7 +16,11 @@ const HomeScreen = () => {
   return (
     <>
       <div>Home Screens</div>
-      <div>{result ? result.map((item) => <p>{item.name}</p>) : null}</div>
+      <div>
+        {result
+          ? result.map((item) => <p key={item.prod_id}>{item.name}</p>)
+          : null}
+      </div>
     </>
   );
 };
