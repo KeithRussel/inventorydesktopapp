@@ -17,8 +17,8 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+import ListAltIcon from '@material-ui/icons/ListAlt';
+import InfoIcon from '@material-ui/icons/Info';
 
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import HomeScreen from '../screens/HomeScreen';
@@ -122,7 +122,7 @@ export default function PersistentDrawerLeft() {
             <MenuIcon />
           </IconButton>
           <Typography variant='h6' noWrap>
-            Persistent drawer
+            Drawer
           </Typography>
         </Toolbar>
       </AppBar>
@@ -146,7 +146,7 @@ export default function PersistentDrawerLeft() {
         </div>
         <Divider />
         <List>
-          {['Inbox', 'Starred'].map((text, url, index) => (
+          {['Inventory', 'About', 'Terms'].map((text, url, index) => (
             <ListItem button key={text}>
               <Link
                 href={url % 2 === 0 ? '/' : '/about'}
@@ -154,24 +154,30 @@ export default function PersistentDrawerLeft() {
                 // onClick={preventDefault}
               >
                 <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                  {index % 2 === 0 ? <ListAltIcon /> : <InfoIcon />}
                 </ListItemIcon>
                 <ListItemText primary={text} />
               </Link>
             </ListItem>
           ))}
         </List>
-        {/* <Divider />
+        <Divider />
         <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
+          {['All mail', 'Trash', 'Spam'].map((text, index, url) => (
             <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
+              <Link
+                href={url % 2 === 0 ? '/' : '/about'}
+                className={classes.navLink}
+                // onClick={preventDefault}
+              >
+                <ListItemIcon>
+                  {index % 2 === 0 ? <ListAltIcon /> : <InfoIcon />}
+                </ListItemIcon>
+                <ListItemText primary={text} />
+              </Link>
             </ListItem>
           ))}
-        </List> */}
+        </List>
       </Drawer>
       <main
         className={clsx(classes.content, {

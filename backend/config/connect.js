@@ -8,6 +8,8 @@ const connectDB = async () => {
     // let db = new sqlite3.Database('../../../sqlite/products.db');
     let db = new sqlite3.Database(dbPath);
 
+    // db.run('CREATE TABLE tbl3(name, price)');
+
     let sql = `SELECT Name name from tbl1 ORDER BY name`;
 
     db.all(sql, [], (err, rows) => {
