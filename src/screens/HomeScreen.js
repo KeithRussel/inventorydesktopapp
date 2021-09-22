@@ -2,6 +2,7 @@ import server from '../utils/server';
 import useRequest from '../utils/useRequest';
 
 import Table from '../components/Table';
+import Modal from '../components/Modal';
 
 const HomeScreen = () => {
   // const { data: result, error } = useRequest({
@@ -18,6 +19,7 @@ const HomeScreen = () => {
   return (
     <>
       <div>Home Screens</div>
+      <Modal />
       {/* <div>
         {result
           ? result.map((item) => <p key={item.prod_id}>{item.name}</p>)
